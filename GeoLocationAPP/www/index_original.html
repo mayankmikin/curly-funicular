@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Device Properties Example</title>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" /> <meta charset="utf-8">
+	<link rel="stylesheet" href="styles/kendo.mobile.all.min.css" type="text/css"/>
+	
+	
+ <script>
+ $(document).ready(function() {
+     /*  $.ajax({
+          url: "http://rest-service.guides.spring.io/greeting"
+      }).then(function(data) {
+         $('.greeting-id').append(data.id);
+         $('.greeting-content').append(data.content);
+      }); 
+	  calljson();
+	  121.244.131.73
+	  10.211.55.3
+	  */
+      
+  });
+ 
+ 
+ function calljson() {
+
+   var user=$('#username').val();
+    var pass=$('#password').val();
+      var ajaxurl =  "http://192.168.0.2:8080/rest/login.html?username="+user+"&password="+pass;
+      
+      $.support.cors = true;
+      $.ajax({
+          type: "GET",
+          url: ajaxurl,
+          crossDomain : true,
+		  
+          error: function (err) {
+              alert("Refresh Again");
+          },
+          success: function (data) {
+              jsondata = data;
+              console.log(data);
+			  $('#user').html("Welcome "+data);
+          },
+		 
+      });
+ }
+    </script>
+  </head>
+  <body>
+    <div class="row">
+    <div>
+ 
+            <div class="form-group">
+              <input id="username" name="username" type="text" placeholder="Email or username">
+             
+            </div>
+            <div >       
+              <input id="password" name="password" type="password"  placeholder="Password">
+            </div>
+            <div class="form-group">
+             <!--  <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button> -->
+             <input type="submit" class="btn btn-primary btn-lg btn-block" onclick="calljson()"/> 
+              
+            </div>
+ 
+  </div>
+</div>
+<span id="user"></span>
+  <a href="page2.html" data-transition="fade">Go to Dialog Page</a>
+  </body>
+</html>
